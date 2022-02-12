@@ -9,7 +9,11 @@ class ShowUserProfileUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
   execute({ user_id }: IRequest): User {
-    // Complete aqui
+    const userFounded = this.usersRepository.findById(user_id);
+    if (!userFounded) {
+      throw new Error("Mensagem do erro");
+    }
+    return userFounded;
   }
 }
 
